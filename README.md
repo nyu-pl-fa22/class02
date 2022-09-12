@@ -154,10 +154,10 @@ Some objects may not follow a LIFO discipline, e.g.
 * the contents of local variables and parameters in functional languages.
 
 The lifetime of these objects may be longer than the lifetime of the
-subroutine in which they were created. These objects are therefore
-allocated on the *heap*: a section of memory set aside for such
-objects (not to be confused with the data structure for implementing
-priority queues, aka. Fibonacci Heap).
+activation record for the call to the subroutine in which they were created. These
+objects are therefore allocated on the *heap*: a section of memory set
+aside for such objects (not to be confused with the data structure for
+implementing priority queues, aka. Fibonacci Heap).
 
 The heap is finite: if we allocate too many objects, we will run out of space.
 
@@ -279,7 +279,7 @@ not available outside that scope.
 
 On the other hand, bindings at one scope typically are available
 inside nested scopes.  The exception is if a new binding is created
-for a name in the nested scope. In this case, we say that the original
+for an existing name in the nested scope. In this case, we say that the original
 binding is *hidden*, and has a *hole* in its scope.
 
 Many languages allow nested scopes to access hidden bindings by using
@@ -299,7 +299,7 @@ Scope qualifiers can be nested, e.g. `A.B.x` refers to the binding of
 interpreted relative to the scope in which they occur (respectively,
 the global scope). For instance a qualified name `B.C.x` that occurs
 in scope `A` may refer to (1) `A.B.C.x` or (2) `B.C.x` relative to the global
-scope.
+scope. The rules used to disambiguate between these possibilities are language-specific.
 
 Some languages allow bindings of other named scopes to be imported
 into the current scope so that they can be referred to without qualifiers
@@ -356,7 +356,7 @@ What is the scope of `x` in the following code snippet?
 * C, C++, Ada, Java: `statements2`
 * JavaScript, Modula3: entire block, but value of `x` will be
   undefined when read in `statements1`.
-* Pascal, Scala, C#: entire block, but not allowed to be used in
+* Pascal, Scala, C#: entire block, but `x` is not allowed to be used in
   `statements1`! If `x` is used in `statement1`, the compiler will
   reject the program with a static semantic error.
 
