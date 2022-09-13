@@ -187,7 +187,7 @@ later. However, it is helpful to understand how allocation and
 deallocation requests by the program are implemented.
 
 Ultimately, a program's requests for fresh heap memory are relayed to
-the operating system via system calls. The operating in turn grants
+the operating system via system calls. The operating system in turn grants
 the program access to memory blocks that it can use to store its
 dynamically allocated objects. Since system calls are expensive, the
 program's memory management subsystem usually requests large memory
