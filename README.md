@@ -599,4 +599,4 @@ declared". So the compiler would reject this program with a static
 semantic error.
 
 For the occurrence of `x` on line 14, the analysis would proceed as
-before.
+before for the C/Java declaration order rules.
